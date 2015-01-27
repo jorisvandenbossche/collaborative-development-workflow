@@ -1,6 +1,6 @@
 Presentation on workflows for collaborative code development.
 
-The slides can be seen here: https://github.ugent.be/pages/jorvdnbo/collaborative-development-workflow/collaborative-development-workflow.slides.html?theme=sky#/1
+The slides can be seen here: https://github.ugent.be/pages/jorvdnbo/collaborative-development-workflow/collaborative-development-workflow.slides.html?theme=sky#/
 
 To convert the notebook to html reveal slides:
 
