@@ -1757,12 +1757,46 @@ div.output_prompt {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="setup-your-environment">Setup your environment</h2>
-<p>Clone your fork:</p>
-<pre><code>git clone https://github.ugent.be/username/biointense.git
-</code></pre><p>and add &#39;upstream&#39; as a remote:</p>
-<pre><code>git remote add upstream https://github.ugent.be/biomath/biointense.git
-</code></pre>
+<h2 id="workflows-for-collaborative-code-development-">Workflows for collaborative code development?</h2>
+<p><strong>When is this important?</strong></p>
+<ul>
+<li>When working simultaneously (<strong>at the same time</strong>) with <strong>multiple people</strong> on the same code base</li>
+</ul>
+<p><strong>Why is this important?</strong></p>
+<ul>
+<li>In the case above, not following a clear workflow will only lead to more merge conflicts, lost work and <strong>a lot of frustation</strong></li>
+</ul>
+<p>So strictly following the clear (git) workflow outlined in this presentation will, although seeming to be more work in the beginning, lead to a smooth collaboration in the end.</p>
+</div>
+</div>
+</div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="types-of-collaborative-development-models">Types of collaborative development models</h2>
+<p>There are two popular models of collaborative development on GitHub: Fork &amp; pull and shared repository.</p>
+<ul>
+<li><p><strong>Fork &amp; pull</strong>:</p>
+<ul>
+<li>Lets anyone fork an existing repository and push changes to their personal fork without requiring access be granted to the source repository.</li>
+<li>Popular with open open source projects.</li>
+</ul>
+</li>
+<li><p><strong>Shared repository</strong>: </p>
+<ul>
+<li>Small teams collaborating on private projects</li>
+</ul>
+</li>
+</ul>
+<p>The fork &amp; pull model lets anyone fork an existing repository and push changes to their personal fork without requiring access be granted to the source repository. The changes must then be pulled into the source repository by the project maintainer. This model reduces the amount of friction for new contributors and is popular with open source projects because it allows people to work independently without upfront coordination.
+Shared repository model</p>
+<p>The shared repository model is more prevalent with small teams and organizations collaborating on private projects. Everyone is granted push access to a single shared repository and topic branches are used to isolate changes.</p>
+<p><strong>Pull requests</strong> (discussed later) are useful in both models. They are especially useful in the fork &amp; pull model because they provide a way to notify project maintainers about changes in your fork. However, they&#39;re also useful in the shared repository model where they&#39;re used to initiate code review and general discussion about a set of changes before being merged into a mainline branch.</p>
 </div>
 </div>
 </div></section>
@@ -1775,8 +1809,23 @@ div.output_prompt {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="setup-your-environment">Setup your environment</h2>
+<p>Clone your fork:</p>
+<pre><code class="language-bash">git clone https://github.ugent.be/username/biointense.git
+</code></pre>
+<p>and add &#39;upstream&#39; as a remote:</p>
+<pre><code class="language-bash">git remote add upstream https://github.ugent.be/biomath/biointense.git
+</code></pre>
+</div>
+</div>
+</div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>List your remotes:</p>
-<pre><code>$ ~/scipy/biointense$ git remote -v
+<pre><code class="language-bash">$ ~/scipy/biointense$ git remote -v
 origin    https://github.ugent.be/jorvdnbo/biointense.git (fetch)
 origin    https://github.ugent.be/jorvdnbo/biointense.git (push)
 upstream    https://github.ugent.be/biomath/biointense.git (fetch)
@@ -1784,7 +1833,8 @@ upstream    https://github.ugent.be/biomath/biointense.git (push)
 </code></pre>
 </div>
 </div>
-</div></section>
+</div>
+    </div></section>
     </section><section>
     <section>
     
@@ -1797,8 +1847,7 @@ upstream    https://github.ugent.be/biomath/biointense.git (push)
 <h3 id="installing-in-development-mode-">Installing in &quot;development mode&quot;</h3>
 <p>Use <code>develop</code> instead of <code>install:</code></p>
 <pre><code>python setup.py develop
-</code></pre><p>Installing from local src in Development Mode, i.e. in such a way that the project appears to be installed, but yet is still editable from the src tree.</p>
-<p><a href="http://pythonhosted.org/setuptools/setuptools.html#development-mode">http://pythonhosted.org/setuptools/setuptools.html#development-mode</a></p>
+</code></pre><p>Installing from local src in Development Mode, i.e. in such a way that the project appears to be installed, but yet is still editable in the source location (<a href="http://pythonhosted.org/setuptools/setuptools.html#development-mode">link</a>).</p>
 </div>
 </div>
 </div></section>
@@ -1810,7 +1859,7 @@ upstream    https://github.ugent.be/biomath/biointense.git (push)
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="code-readability">Code readability</h2>
+<h2 id="intermezzo-code-readability">Intermezzo - Code readability</h2>
 <p><em>Code is read many more times than written!</em></p>
 <p>In many cases, that person is probably going to be you, twelve months from now.</p>
 <ul>
@@ -1855,8 +1904,12 @@ upstream    https://github.ugent.be/biomath/biointense.git (push)
 <p>Peer code review is a process by which developers review and evaluate each other’s code.</p>
 <p>Why?</p>
 <ul>
-<li>Improve the cocde - higher code quality (spot bugs, strive for consistency)</li>
-<li>learning and teaching others<ul>
+<li>Improve the code - higher code quality<ul>
+<li>Spot bugs or vulnerabilities in the code</li>
+<li>Strive for consistency, readability, efficiency, and maintainability</li>
+</ul>
+</li>
+<li>Knowledge sharing - learning from and teaching others<ul>
 <li>Learn from getting feedback</li>
 <li>Learn from reading someone elses code</li>
 </ul>
@@ -1866,12 +1919,6 @@ upstream    https://github.ugent.be/biomath/biointense.git (push)
 <li>Assess code readability, by, well .. reading the code!</li>
 </ul>
 <p>Code reviews help spread knowledge and best practices around code across the team.</p>
-<pre><code>Fewer bugs. Developers can continue making errors as usual, but code reviews will decrease the amount of those bugs that make it to production.
-Better security. Code reviews make it easy to spot potential vulnerabilities and fix them before they make their way to your servers.
-Knowledge sharing. Members of your team can learn from each other by reviewing each other’s code.
-Code quality. Things like readability, efficiency, and maintainability of your code may not always directly affect your users but they are tremendously important in the long run of your project.
-Better performance. Code reviews help spot performance issues and regressions.
-</code></pre>
 </div>
 </div>
 </div></section>
@@ -1884,8 +1931,9 @@ Better performance. Code reviews help spot performance issues and regressions.
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="code-review-">Code review:</h2>
-<p>Pull requests:</p>
+<p>Use Pull requests (PR) through github for all changes:</p>
 <ul>
+<li>Notify people</li>
 <li>View changes</li>
 <li>Comment on changes</li>
 <li>Discuss</li>
@@ -1902,7 +1950,12 @@ Better performance. Code reviews help spot performance issues and regressions.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="git-workflow">Git workflow</h2>
+<h2 id="code-conventions">Code conventions</h2>
+<p>Consistent code style:</p>
+<ul>
+<li>PEP8 (use tools like pylint, flake8, ... inside your IDE)</li>
+<li>clear internal naming scheme -&gt; need well defined API</li>
+</ul>
 </div>
 </div>
 </div></section>
@@ -1914,25 +1967,7 @@ Better performance. Code reviews help spot performance issues and regressions.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="types-of-collaborative-development-models">Types of collaborative development models</h2>
-<p>There are two popular models of collaborative development on GitHub: Fork &amp; pull and shared repository.</p>
-<ul>
-<li><p><strong>Fork &amp; pull</strong>:</p>
-<ul>
-<li>Lets anyone fork an existing repository and push changes to their personal fork without requiring access be granted to the source repository.</li>
-<li>Popular with open open source projects.</li>
-</ul>
-</li>
-<li><p><strong>Shared repository</strong>: </p>
-<ul>
-<li>Small teams collaborating on private projects</li>
-</ul>
-</li>
-</ul>
-<p>The fork &amp; pull model lets anyone fork an existing repository and push changes to their personal fork without requiring access be granted to the source repository. The changes must then be pulled into the source repository by the project maintainer. This model reduces the amount of friction for new contributors and is popular with open source projects because it allows people to work independently without upfront coordination.
-Shared repository model</p>
-<p>The shared repository model is more prevalent with small teams and organizations collaborating on private projects. Everyone is granted push access to a single shared repository and topic branches are used to isolate changes.</p>
-<p>Pull requests are especially useful in the fork &amp; pull model because they provide a way to notify project maintainers about changes in your fork. However, they&#39;re also useful in the shared repository model where they&#39;re used to initiate code review and general discussion about a set of changes before being merged into a mainline branch.</p>
+<h1 id="git-workflow">Git workflow</h1>
 </div>
 </div>
 </div></section>
@@ -1951,10 +1986,14 @@ Shared repository model</p>
 <li>Never work in master</li>
 </ul>
 </li>
-<li>Branch</li>
+<li>Branch always<ul>
+<li>Only branch off master.</li>
+<li>Branch often, branch for each feature, each bug-fix.</li>
+</ul>
+</li>
 <li>Never merge, do rebase</li>
 </ol>
-<p>Typical workflow</p>
+<p>-&gt; Summary: typical workflow</p>
 </div>
 </div>
 </div></section>
@@ -1986,145 +2025,13 @@ Shared repository model</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="1-keep-master-a-copy-of-upstream-master">1. Keep master a copy of upstream/master</h2>
-<p>UPDATING MASTER:</p>
-<pre><code>git fetch upstream
-git checkout master
-git ff upstream/master  # ffum
-git push origin master  # pom
-git checkout back_to_branch
-</code></pre>
-</div>
-</div>
-</div></section>
-    </section><section>
-    <section>
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="2-only-branch-off-master">2. Only branch off master</h2>
-<pre><code>git checkout master
-git checkout -b featureA 
-</code></pre>
-</div>
-</div>
-</div></section>
-    </section><section>
-    <section>
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="make-branches-independent">MAKE BRANCHES INDEPENDENT</h2>
-<p>Keeping concerns separate.</p>
-<p>Branches are CHEAP.</p>
-<pre><code>git checkout master
-git checkout -b featureA
-</code></pre><p><img src=img/feature_branch.png></img></p>
-</div>
-</div>
-</div></section>
-    </section><section>
-    <section>
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><img src=img/feature_branch.png></img></p>
-</div>
-</div>
-</div></section>
-    </section><section>
-    <section>
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="overview">Overview</h2>
-<p>COMMIT TO YOur own FEATURE branches.</p>
-<p>Keep master with only reviewed and tested commits.</p>
-</div>
-</div>
-</div></section>
-    </section><section>
-    <section>
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="push">PUSH</h2>
-<p>Once you&#39;ve done some work you should update/backup your online (Github) repository with your work.</p>
-<p>git push origin featureA</p>
-<p>Now it&#39;s on Github.</p>
-<p>WORKFLOW part 1
-Update master</p>
-<p>git fetch upstream
-git checkout master
-git ff upstream/master  # ffum
-git push origin master</p>
-<p>Create new branch from master</p>
-<p>git checkout master
-git checkout -b feature_branch</p>
-<h1 id="do-stuff">do stuff</h1>
-<p>git commit
-git push origin feature_branch</p>
-<h1 id="pull-request-via-github">PULL REQUEST VIA GITHUB</h1>
-<p>Continued below  ↓.
-WORKFLOW PART 2</p>
-<p>This means there are merge conflicts.</p>
-<p>Update branch with rebase</p>
-<p>git checkout featureA</p>
-<h1 id="optionally-create-backup-branch-">optionally, create backup branch:</h1>
-<p>git branch featureA_backup</p>
-<p>git rebase master</p>
-<h1 id="resolve-merge-conflicts-git-add-and-git-rebase-continue-">resolve merge conflicts (git add and git rebase --continue)</h1>
-<h1 id="retest-and-check-functionality-is-still-here-">retest and check functionality is still here!</h1>
-<p>git push origin feature_branch --force</p>
-<p>WORKFLOW PART 3</p>
-<p>Squash N commits into 1</p>
-<p>git checkout featureA</p>
-<h1 id="optionally-create-backup-branch">optionally, create backup branch</h1>
-<p>git branch featureA_backup</p>
-<p>git rebase -i HEAD~N  # N is number of commits to squash</p>
-<h1 id="this-opens-a-file-replace-all-but-the-first-pick-with-s">this opens a file: replace all but the first pick with s</h1>
-<h1 id="then-opens-the-commit-message-usually-you-can-leave-as-is-">then opens the commit message (usually you can leave as is)</h1>
-<p>git diff featureA_backup  # optionally, compare with the backup</p>
-<h1 id="this-diff-this-should-be-blank-otherwise-you-ve-dropped-a-commit-">this diff this should be blank (otherwise you&#39;ve dropped a commit*)</h1>
-<p>git push origin featureA --force  # this updates the PULL REQUEST</p>
-<p>*see below
-PULL-REQUEST
-Once you&#39;ve  completed your feature/bug fix you should request your branch be included into upstream.</p>
-</div>
-</div>
-</div></section>
-    </section><section>
-    <section>
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="summary-typical-workflow">Summary: typical workflow</h2>
-<p>1. Update master:</p>
-<pre><code>git fetch upstream
-git checkout master
-git merge --ff-only upstream/master
-</code></pre><p>test</p>
+<p>Updating your local master from upstream:</p>
 <pre><code class="language-bash">git fetch upstream
 git checkout master
 git merge --ff-only upstream/master
+git push origin master
 </code></pre>
+<p>Commandment: <strong>Never work in master!</strong> -&gt; make branches for everything</p>
 </div>
 </div>
 </div></section>
@@ -2136,36 +2043,11 @@ git merge --ff-only upstream/master
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<ol>
-<li><p>Update master:</p>
-<pre><code>git fetch upstream
-git checkout master
-git merge --ff-only upstream/master
-</code></pre></li>
-<li><p>Create a new topic branch from master:</p>
-<pre><code>git checkout master
-git checkout -b feature_branch
-</code></pre></li>
-<li><p>Do stuff:</p>
-<pre><code>git commit -am &quot;message&quot;
-git push origin feature_branch
-</code></pre></li>
-<li><p>Make a pull request with your changes:</p>
-<pre><code>git push origin feature_branch
-</code></pre></li>
-<li><p>Code review!</p>
-</li>
-<li><p>Update your branch with rebase:</p>
-<pre><code>git checkout feature_branch
-git fetch upstream
-git rebase upstream/master
-</code></pre><p>If you have to resolve merge conflicts:</p>
-<pre><code>git add &lt;changed files&gt;
-git rebase --continue
-</code></pre><p>Force push to github:</p>
-<pre><code>git push origin feature_branch --force
-</code></pre></li>
-</ol>
+<h2 id="2-branch">2. Branch</h2>
+<h3 id="only-branch-off-master">Only branch off master</h3>
+<pre><code class="language-bash">git checkout master
+git checkout -b featureA
+</code></pre>
 </div>
 </div>
 </div><div class="fragment">
@@ -2175,18 +2057,13 @@ git rebase --continue
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<ol>
-<li><p>Update your branch with rebase:</p>
-<pre><code> git checkout feature_branch
- git fetch upstream
- git rebase upstream/master
-</code></pre><p>If you have to resolve merge conflicts:</p>
-<pre><code> git add &lt;changed files&gt;
- git rebase --continue
-</code></pre><p>Force push to github:</p>
-<pre><code> git push origin feature_branch --force
-</code></pre></li>
-</ol>
+<h3 id="make-branches-independent">MAKE BRANCHES INDEPENDENT</h3>
+<p>Keeping concerns separate.</p>
+<p>Branches are CHEAP.</p>
+<pre><code class="language-bash">git checkout master
+git checkout -b featureA
+</code></pre>
+<p><img src=img/feature_branch.png></img></p>
 </div>
 </div>
 </div>
@@ -2199,14 +2076,185 @@ git rebase --continue
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="overview">Overview</h2>
+<h2 id="summary">Summary</h2>
+<p>Commit to your own feature branches.</p>
+<p>Keep master with only reviewed and tested commits.</p>
+</div>
+</div>
+</div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3-never-merge-do-rebase">3. Never merge, do rebase</h2>
+<p>Don&#39;t use <code>merge</code> or <code>pull</code> (= automatic fetch + merge)</p>
+<pre><code class="language-bash">git rebase upstream/master
+</code></pre>
+</div>
+</div>
+</div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>But to be a bit more specific:</p>
 <ul>
-<li>development mode</li>
-<li>revision control git</li>
-<li>forking/branching</li>
-<li>code review</li>
-<li>code conventions (style, naming, ..)</li>
+<li>Only rebase local feature branches, never rebase upstream (branch that you pulled)</li>
+<li>The reason you rebase your feature branch is that it can be merged into master without conflicts</li>
+<li>This advice does not hold when working with shared branched (working with multiple people on the same branch)</li>
+<li>You <em>use</em> merge to merge a feature branch into master (or Github does this for you)</li>
 </ul>
+</div>
+</div>
+</div>
+    </div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="summary-typical-workflow">Summary: typical workflow</h2>
+<p>1. Update master:</p>
+<pre><code class="language-bash">git fetch upstream
+git checkout master
+git merge --ff-only upstream/master
+</code></pre>
+<p>2. Create a new topic branch from master:</p>
+<pre><code class="language-bash">git checkout master
+git checkout -b feature_branch
+</code></pre>
+<p>3. Do stuff:</p>
+<pre><code class="language-markdown">git commit -am &quot;message&quot;
+git push origin feature_branch
+</code></pre>
+</div>
+</div>
+</div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>4. Make a pull request with your changes:</p>
+<pre><code class="language-bash">git push origin feature_branch
+</code></pre>
+<p>5. Code review!</p>
+<p>6. Update your branch with rebase:</p>
+<pre><code class="language-bash">git checkout feature_branch
+git fetch upstream
+git rebase upstream/master
+</code></pre>
+<p>If you have to resolve merge conflicts:</p>
+<pre><code class="language-bash">git add &lt;changed files&gt;
+</code></pre>
+<pre><code class="language-markdown">git rebase --continue
+</code></pre>
+<p>Force push to github (this updates the pull request!):</p>
+<pre><code class="language-bash">git push origin feature_branch --force
+</code></pre>
+</div>
+</div>
+</div>
+    </div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
+</div>
+</div>
+</div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="some-extra-git-tips">Some extra git tips</h2>
+<h3 id="amend">Amend</h3>
+<p>Add a small edit to your last commit:</p>
+<pre><code class="language-bash">git commit -a --amend
+</code></pre>
+<h3 id="squash">Squash</h3>
+<p>If wanted: squash N commits into 1</p>
+<pre><code class="language-bash">git rebase -i upstream/master
+</code></pre>
+<p>This opens a file: replace all but the first <code>pick</code> with <code>squash</code>. Then it opens the commit message (usually you can leave as is). </p>
+<pre><code class="language-bash">git push origin feature_branch --force
+</code></pre>
+</div>
+</div>
+</div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="some-extra-git-tips">Some extra git tips</h2>
+<h3 id="git-aliases">Git aliases</h3>
+<p>For those who don&#39;t like to type too much characters, you can add this to your <code>.gitconfig</code> file:</p>
+<pre><code>[alias]
+  r = rebase
+  f = fetch
+  ff = merge --ff-only
+  co = checkout
+  c = commit
+  a = add
+  p = push
+  pf = push --force
+  s = status
+  b = branch
+  l = log
+  h = log --pretty=format:\&quot;%h %ad | %s%d [%an]\&quot; --date=short
+
+  # for even more convenience
+  po = push origin
+  fu = fetch upstream
+  ff = merge --ff-only upstream/master
+  # for fetching the code in a pr (eg &#39;git pr 52&#39;)
+  pr = &quot;!sh -c \&quot;git fetch upstream pull/$1/head:refs/remotes/upstream/pr/$1\&quot; -&quot;
+</code></pre>
+</div>
+</div>
+</div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="some-extra-git-tips">Some extra git tips</h2>
+<h3 id="setting-the-remote-branch-to-push">Setting the remote branch to push</h3>
+<p>When working on a feature branch, you typically do</p>
+<pre><code class="language-bash">git push origin feature_branch
+</code></pre>
+<p>When you add the first time you do this the <code>-u</code> argument, then the subsequent times you don&#39;t need to specify the remote:</p>
+<pre><code class="language-bash">git push -u origin feature_branch
+</code></pre>
+<p>Next time:</p>
+<pre><code class="language-bash">git push
+</code></pre>
 </div>
 </div>
 </div></section>
@@ -2230,25 +2278,6 @@ Do not git pull.
 Do not git merge.
 Do not pass Go. 
 </code></pre>
-</div>
-</div>
-</div></section>
-    </section><section>
-    <section>
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="overview">Overview</h2>
-<ul>
-<li>development mode</li>
-<li>revision control git</li>
-<li>forking/branching</li>
-<li>code review</li>
-<li>code conventions (style, naming, ..)</li>
-</ul>
 </div>
 </div>
 </div></section>
